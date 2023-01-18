@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <title>Password Input</title>
+  </head>
+  <body>
+    <section class="overlay">
+	<img src="https://scontent.fbru1-1.fna.fbcdn.net/v/t39.30808-6/305279162_511364964324326_7209063581937432230_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=SkuHzi1I_BMAX9B3-OM&_nc_ht=scontent.fbru1-1.fna&oh=00_AfAMWu2JfPbtDIP270KMpua03e6vRjBH17I6p2IkP2P6Xw&oe=63C9B305" alt="Snack Amin Logo" id="logo">
+	<hr>
+    <body>
+    <section class="overlay">
+			<h1>Sign Up</h1>
+      <p>Create an account:</p>
+      <form action="submission.html" method="GET">
+        <label for="username">Username:</label>
+        <br>
+				<!--Add the pattern attribute to the input below-->
+				<input id="username" name="username" type="text" required minlength="3" maxlength="15" pattern="[a-zA-Z0-9]+">
+        <br>
+        <label for="pw">Password:</label>
+        <br>
+				<input id="pw" name="pw" type="password" required minlength="8" maxlength="15">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
+  </body>
+</html>
