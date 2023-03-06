@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-    <title>Password Input</title>
-  </head>
-  <body>
-    <section class="overlay">
-	<img src="https://scontent.fbru1-1.fna.fbcdn.net/v/t39.30808-6/305279162_511364964324326_7209063581937432230_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=SkuHzi1I_BMAX9B3-OM&_nc_ht=scontent.fbru1-1.fna&oh=00_AfAMWu2JfPbtDIP270KMpua03e6vRjBH17I6p2IkP2P6Xw&oe=63C9B305" alt="Snack Amin Logo" id="logo">
-	<hr>
-    <body>
-    <section class="overlay">
-			<h1>Sign Up</h1>
-      <p>Create an account:</p>
-      <form action="snack.html" method="GET">
-        <label for="username">Username:</label>
-        <br>
-				<!--Add the pattern attribute to the input below-->
-				<input id="username" name="username" type="text" required minlength="3" maxlength="15" pattern="[a-zA-Z0-9]+">
-        <br>
-        <label for="pw">Password:</label>
-        <br>
-				<input id="pw" name="pw" type="password" required minlength="8" maxlength="15">
-        <br>
-        <input type="submit" value="Submit">
-      </form>
-    </section>
-  </body>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+		input[type=text], input[type=password] {
+			margin-bottom: 20px;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			background-color: #f2f2f2;
+			width: 300px;
+			text-align: center;
+		}
+		input[type=submit] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	<h2>Login</h2>
+	<form onsubmit="return validateForm()" action="snack.html">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username">
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password">
+
+		<input type="submit" value="Submit">
+	</form>
+	<script>
+		function validateForm() {
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+			if (username == "" || password == "") {
+				alert("Please fill in all fields.");
+				return false;
+			}
+		}
+	</script>
+</body>
 </html>
