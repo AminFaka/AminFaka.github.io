@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -20,18 +21,11 @@ ul {
   list-style: none;
 }
 
+/* Header Styles */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  background-color: #333;
-}
-
-header img {
-  width: 100px;
-  height: auto;
-  margin-right: 10px;
+  background-color: #f7f7f7;
+  padding: 20px;
+  text-align: center;
 }
 
 nav ul {
@@ -115,3 +109,4 @@ footer a {
   font-weight: bold;
   text-decoration: underline;
 }
+
