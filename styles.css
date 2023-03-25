@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header Styles */
+header {
+  background-color: #f7f7f7;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Banner Styles */
+.banner {
+  background-image: url("https://images.unsplash.com/photo-1526630274442-fd87f8b55314");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner h1 {
+  font-size: 60px;
+  color: #fff;
+  text-shadow: 2px 2px #333;
+  text-align: center;
+}
+
+/* Section Styles */
+section {
+  padding: 40px;
+}
+
+section h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+section p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+section .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+section .button:hover {
+  background-color: #666;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+footer a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
