@@ -24,12 +24,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 100px;
   background-color: #333;
 }
 
 header img {
-  width: 120px;
+  width: 100px;
   height: auto;
   margin-right: 10px;
 }
@@ -47,6 +47,7 @@ nav li {
 nav a {
   font-size: 18px;
   font-weight: bold;
+  color: white;
 }
 
 /* Banner Styles */
@@ -54,7 +55,7 @@ nav a {
   background-image: url("https://images.unsplash.com/photo-1526630274442-fd87f8b55314");
   background-size: cover;
   background-position: center;
-  height: 500px;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,4 +116,3 @@ footer a {
   font-weight: bold;
   text-decoration: underline;
 }
-
