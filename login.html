@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login met Google</title>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+	<h1>Login met Google</h1>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	
+	<script>
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
+			console.log("Naam: " + profile.getName());
+			console.log("Afbeelding URL: " + profile.getImageUrl());
+			console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
+		}
+	</script>
+</body>
+</html>
