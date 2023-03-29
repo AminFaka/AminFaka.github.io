@@ -7,7 +7,7 @@
         	<img src="https://i.ibb.co/k88KpkF/download.png" alt="logino">
 	<title>Login met Google</title>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com">
 </head>
 <body>
 	<h1>Login met Google</h1>
@@ -25,8 +25,8 @@
 		// Bijgewerkte code met de juiste Client ID en redirect URIs
 		gapi.load('auth2', function() {
 			gapi.auth2.init({
-				client_id: '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com.apps.googleusercontent.com',
-				redirect_uri: 'http://localhost/callback',
+				client_id: '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com',
+				redirect_uri: 'https://aminfaka.github.io/menu.html',
 				scope: 'email'
 			});
 		});
@@ -53,6 +53,5 @@
 			});
 		}
 	</script>
-	<button onclick="googleLogin()">Log in met Google</button>
 </body>
 </html>
