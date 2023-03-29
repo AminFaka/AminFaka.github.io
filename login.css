@@ -1,0 +1,45 @@
+</* Maak de achtergrond zwart en zet de tekstkleur op wit */
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Maak het logo in het midden van de pagina */
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Geef het logo een beetje schaduw */
+.logo img {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Maak de titel groot en vetgedrukt */
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* Geef de knop een achtergrondkleur en maak het tekstkleur wit */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* Stijl de knop als de gebruiker er met de muis overheen gaat */
+button:hover {
+  background-color: #3e8e41;
+}
