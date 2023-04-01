@@ -9,51 +9,51 @@
   <meta name="google-signin-client_id" content="434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com">
 </head>
 <body>
-	<h1>Login met Google</h1>
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-	
-	<script>
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
-			console.log("Naam: " + profile.getName());
-			console.log("Afbeelding URL: " + profile.getImageUrl());
-			console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
-		}
+  <h1>Login met Google</h1>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-		// Bijgewerkte code met de juiste Client ID en redirect URIs
-		gapi.load('auth2', function() {
-			gapi.auth2.init({
-				client_id: '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com',
-				redirect_uri: 'https://aminfaka.github.io/menu.html',
-				scope: 'email'
-			});
-		});
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
+      console.log("Naam: " + profile.getName());
+      console.log("Afbeelding URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
+    }
 
-		// De functie om in te loggen met Google
-		function googleLogin() {
-			var googleAuth = gapi.auth2.getAuthInstance();
-			googleAuth.then(function() {
-				if (googleAuth.isSignedIn.get()) {
-					var profile = googleAuth.currentUser.get().getBasicProfile();
-					console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
-					console.log("Naam: " + profile.getName());
-					console.log("Afbeelding URL: " + profile.getImageUrl());
-					console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
-				} else {
-					googleAuth.signIn().then(function() {
-						var profile = googleAuth.currentUser.get().getBasicProfile();
-						console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
-						console.log("Naam: " + profile.getName());
-						console.log("Afbeelding URL: " + profile.getImageUrl());
-						console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
-					});
-				}
-			});
-		}
-	</script>
-	
-	<button onclick="window.location.href='https://aminfaka.github.io/menu.html'">Inloggen als gast</button>
-	
+    // Bijgewerkte code met de juiste Client ID en redirect URIs
+    function googleLogin() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init({
+          client_id: '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com',
+          redirect_uri: 'https://aminfaka.github.io/menu.html',
+          scope: 'email'
+        }).then(function() {
+          var googleAuth = gapi.auth2.getAuthInstance();
+          if (googleAuth.isSignedIn.get()) {
+            var profile = googleAuth.currentUser.get().getBasicProfile();
+            console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
+            console.log("Naam: " + profile.getName());
+            console.log("Afbeelding URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
+          } else {
+            googleAuth.signIn().then(function() {
+              var profile = googleAuth.currentUser.get().getBasicProfile();
+              console.log("ID: " + profile.getId()); // Dit is de unieke ID van de gebruiker
+              console.log("Naam: " + profile.getName());
+              console.log("Afbeelding URL: " + profile.getImageUrl());
+              console.log("Email: " + profile.getEmail()); // Dit is null als de gebruiker geen e-mailadres heeft gegeven aan Google
+            });
+          }
+        });
+      });
+    }
+  </script>
+
+  <button onclick="googleLogin()">Inloggen met Google</button>
+
+  <button onclick="window.location.href='https://aminfaka.github.io/menu.html'">Inloggen als gast</button>
+
 </body>
 </html>
+
