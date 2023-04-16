@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Google Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="login.css">
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com">
-</head>
-<body>
-	<header>
-		<h1>Login with Google</h1>
-	</header>
-	<main>
-		<div class="login">
-			<div class="g-signin2" data-onsuccess="onSignIn"></div>
-		</div>
-	</main>
-	<script src="login.js"></script>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Login</title>
+    <!-- Voeg de Google client ID toe aan de meta tag -->
+    <meta name="google-signin-client_id" content="JOUW_CLIENT_ID_HIER" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <h1>Google Login</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
+    <script>
+      function onSignIn(googleUser) {
+        // Haal de gebruikersinformatie op en sla deze op in een object
+        const profile = googleUser.getBasicProfile();
+        const userInfo = {
+          name: profile.getName(),
+          email: profile.getEmail(),
+          imageUrl: profile.getImageUrl(),
+        };
+        console.log(userInfo);
+
+        // Doorsturen naar de menu-pagina
+        window.location.href = "https://aminfaka.github.io/menu.html";
+      }
+    </script>
+  </body>
+</html>
