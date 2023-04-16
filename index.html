@@ -41,6 +41,21 @@
       });
       oneTap.renderButton('#g_id_signin');
     };
+
+    // Stap 7: Vervang 'JOUW_CLIENT_ID' door jouw eigen client ID.
+    const CLIENT_ID = '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com';
+
+    // Stap 8: Controleer of de huidige gebruiker al is ingelogd met Google en verwerk de loginstatus.
+    window.addEventListener('google-loaded', () => {
+      const googleUser = window.google.accounts.user;
+      if (googleUser) {
+        console.log('Gebruiker is ingelogd met Google');
+        handleCredentialResponse(googleUser);
+      } else {
+        console.log('Gebruiker is niet ingelogd met Google');
+      }
+    });
   </script>
 </body>
 </html>
+
