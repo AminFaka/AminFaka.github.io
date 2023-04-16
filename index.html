@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Google Login</title>
-    <!-- Voeg de Google client ID toe aan de meta tag -->
-    <meta name="google-signin-client_id" content="434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-  </head>
-  <body>
-    <h1>Google Login</h1>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <script>
-      function onSignIn(googleUser) {
-        // Haal de gebruikersinformatie op en sla deze op in een object
-        const profile = googleUser.getBasicProfile();
-        const userInfo = {
-          name: profile.getName(),
-          email: profile.getEmail(),
-          imageUrl: profile.getImageUrl(),
-        };
-        console.log(userInfo);
-
-        // Doorsturen naar de menu-pagina
-        window.location.href = "https://aminfaka.github.io/menu.html";
-      }
-    </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login met Google</title>
+</head>
+<body>
+  <h1>Login met Google</h1>
+  <div id="g_id_onload"
+       data-client_id="JOUW_CLIENT_ID"
+       data-login_uri="https://aminfaka.github.io/menu.html"
+       data-auto_prompt="false"></div>
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large"
+       data-theme="outline"
+       data-text="sign_in_with"
+       data-shape="rectangular"
+       data-logo_alignment="left">
+  </div>
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <script>
+    function handleCredentialResponse(response) {
+      const credential = response.credential;
+      console.log('Signed in with Google');
+      console.log(credential);
+      // Voeg hier eventuele verdere logica toe, zoals doorverwijzing naar menu.html
+      window.location.href = "https://aminfaka.github.io/menu.html";
+    }
+    window.onload = function() {
+      const oneTap = new window.google.accounts.identity.Widget({
+        'client_id': 'JOUW_CLIENT_ID',
+        'onCancel': function() {
+          console.log('One-tap sign-up canceled');
+        },
+        'onError': function(error) {
+          console.error(error);
+        },
+        'onSuccess': handleCredentialResponse
+      });
+      oneTap.renderButton('#g_id_signin');
+    };
+  </script>
+</body>
 </html>
