@@ -27,7 +27,7 @@ function loadObject(name, file, position, rotation, scale) {
 }
 
 // load some furniture objects
-loadObject('table', 'models/table.glb', new THREE.Vector3(0, 0, 0), new THREE.Euler(0, 0, 0), new THREE.Vector3(1, 1, 1));
+loadObject('table', 'models/table.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(0, 0, 0), new THREE.Vector3(1, 1, 1));
 loadObject('chair', 'models/chair.glb', new THREE.Vector3(1, 0, 0), new THREE.Euler(0, Math.PI / 2, 0), new THREE.Vector3(1, 1, 1));
 loadObject('couch', 'models/couch.glb', new THREE.Vector3(-1, 0, 0), new THREE.Euler(0, -Math.PI / 2, 0), new THREE.Vector3(1, 1, 1));
 loadObject('bed', 'models/bed.glb', new THREE.Vector3(0, 0, 1), new THREE.Euler(0, 0, 0), new THREE.Vector3(1, 1, 1));
