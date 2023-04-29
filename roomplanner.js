@@ -1,158 +1,47 @@
-let camera, scene, renderer, controls;
-let objects = [];
+// set up the scene, camera, and renderer
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth - 200, window.innerHeight);
+document.getElementById('canvas').appendChild(renderer.domElement);
 
-init();
-animate();
+// add lighting to the scene
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+directionalLight.position.set(0, 1, 1);
+scene.add(directionalLight);
 
-function init() {
-
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
-
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0);
-
-    // Create a cube as the room
-    let geometry = new THREE.BoxGeometry(800, 800, 800);
-    let material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true});
-    let room = new THREE.Mesh(geometry, material);
-    room.position.set(0,0,0);
-    scene.add(room);
-
-    // Set up renderer
-    renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    // Set up mouse controls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = false;
-    controls.minDistance = 500;
-    controls.maxDistance = 5000;
-
-    // Add event listener for dragging objects
-    document.addEventListener('mousedown', onDocumentMouseDown, false);
-
-    // Add event listener for window resizing
-    window.addEventListener('resize', onWindowResize, false);
-
+// create a function to load furniture objects
+function loadObject(name, file, position, rotation, scale) {
+	const loader = new THREE.GLTFLoader();
+	loader.load(file, (gltf) => {
+		const object = gltf.scene;
+		object.name = name;
+		object.position.copy(position);
+		object.rotation.copy(rotation);
+		object.scale.copy(scale);
+		scene.add(object);
+	});
 }
 
-function onWindowResize() {
+// load some furniture objects
+loadObject('table', 'models/table.glb', new THREE.Vector3(0, 0, 0), new THREE.Euler(0, 0, 0), new THREE.Vector3(1, 1, 1));
+loadObject('chair', 'models/chair.glb', new THREE.Vector3(1, 0, 0), new THREE.Euler(0, Math.PI / 2, 0), new THREE.Vector3(1, 1, 1));
+loadObject('couch', 'models/couch.glb', new THREE.Vector3(-1, 0, 0), new THREE.Euler(0, -Math.PI / 2, 0), new THREE.Vector3(1, 1, 1));
+loadObject('bed', 'models/bed.glb', new THREE.Vector3(0, 0, 1), new THREE.Euler(0, 0, 0), new THREE.Vector3(1, 1, 1));
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+// set up the drag-and-drop functionality for the furniture objects
+const dragControls = new THREE.DragControls(scene.children.filter((child) => child.name !== 'floor'), camera, renderer.domElement);
+dragControls.addEventListener('drag', (event) => {
+event.object.rotation.x = 0;
+event.object.rotation.z = 0;
+});
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-}
-
-function onDocumentMouseDown(event) {
-
-    event.preventDefault();
-
-    let raycaster = new THREE.Raycaster();
-    let mouse = new THREE.Vector2();
-
-    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-
-    let intersects = raycaster.intersectObjects(objects);
-
-    if (intersects.length > 0) {
-
-        controls.enabled = false;
-
-        // Select the first object in the list
-        let selectedObject = intersects[0].object;
-
-        // Calculate the offset between the object and the mouse pointer
-        let intersectsPoint = intersects[0].point;
-        let offset = new THREE.Vector3();
-        offset.copy(intersectsPoint).sub(selectedObject.position);
-
-        // Add event listeners for dragging and releasing the object
-        document.addEventListener('mousemove', onDocumentMouseMove, false);
-        document.addEventListener('mouseup', onDocumentMouseUp, false);
-
-        function onDocumentMouseMove(event) {
-
-            event.preventDefault();
-
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-
-                raycaster.setFromCamera(mouse, camera);
-
-    let intersects = raycaster.intersectObjects(objects);
-
-    if (intersects.length > 0) {
-
-        controls.enabled = false;
-
-        // Select the first object in the list
-        let selectedObject = intersects[0].object;
-
-        // Calculate the offset between the object and the mouse pointer
-        let intersectsPoint = intersects[0].point;
-        let offset = new THREE.Vector3();
-        offset.copy(intersectsPoint).sub(selectedObject.position);
-
-        // Add event listeners for dragging and releasing the object
-        document.addEventListener('mousemove', onDocumentMouseMove, false);
-        document.addEventListener('mouseup', onDocumentMouseUp, false);
-
-        function onDocumentMouseMove(event) {
-
-            event.preventDefault();
-
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-
-            raycaster.setFromCamera(mouse, camera);
-
-            let intersects = raycaster.intersectObjects(objects);
-
-            if (intersects.length > 0) {
-
-                // Move the selected object to the mouse pointer
-                selectedObject.position.copy(intersects[0].point.sub(offset));
-
-            }
-
-            render();
-
-        }
-
-        function onDocumentMouseUp(event) {
-
-            controls.enabled = true;
-
-            document.removeEventListener('mousemove', onDocumentMouseMove, false);
-            document.removeEventListener('mouseup', onDocumentMouseUp, false);
-
-        }
-
-    }
-
-    render();
-
-}
-
+// render the scene
 function render() {
-
-    renderer.render(scene, camera);
-
+renderer.render(scene, camera);
+requestAnimationFrame(render);
 }
-
-function animate() {
-
-    requestAnimationFrame(animate);
-    controls.update();
-    render();
-
-}
-
+render();
