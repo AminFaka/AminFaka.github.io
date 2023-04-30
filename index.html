@@ -1,62 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="zGZ1eNvpLwHLpQ9mT9dOPaKHi90v6fx8J2ZsPlv15wM" />
-  <title>Login met Google</title>
+  <title>Registreer</title>
+  <meta charset:"UTF-8">
 </head>
 <body>
-  <h1>Login met Google</h1>
-  <div id="g_id_onload"
-       data-client_id="434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com"
-       data-login_uri="https://aminfaka.github.io/menu.html"
-       data-auto_prompt="false"></div>
-  <div class="g_id_signin"
-       data-type="standard"
-       data-size="large"
-       data-theme="outline"
-       data-text="sign_in_with"
-       data-shape="rectangular"
-       data-logo_alignment="left">
-  </div>
-  <script src="https://accounts.google.com/gsi/client"></script>
-  <script>
-    function handleCredentialResponse(response) {
-      const credential = response.credential;
-      console.log('Signed in with Google');
-      console.log(credential);
-      // Voeg hier eventuele verdere logica toe, zoals doorverwijzing naar menu.html
-      window.location.href = "https://aminfaka.github.io/menu.html";
-    }
-    window.onload = function() {
-      const oneTap = new window.google.accounts.identity.Widget({
-        'client_id': '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com',
-        'onCancel': function() {
-          console.log('One-tap sign-up canceled');
-        },
-        'onError': function(error) {
-          console.error(error);
-        },
-        'onSuccess': handleCredentialResponse
-      });
-      oneTap.renderButton('#g_id_signin');
-    };
-
-    // Stap 7: Vervang 'JOUW_CLIENT_ID' door jouw eigen client ID.
-    const CLIENT_ID = '434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com';
-
-    // Stap 8: Controleer of de huidige gebruiker al is ingelogd met Google en verwerk de loginstatus.
-    window.addEventListener('google-loaded', () => {
-      const googleUser = window.google.accounts.user;
-      if (googleUser) {
-        console.log('Gebruiker is ingelogd met Google');
-        handleCredentialResponse(googleUser);
-      } else {
-        console.log('Gebruiker is niet ingelogd met Google');
-      }
-    });
-  </script>
+  <h1>Registreer</h1>
+  <form>
+     <div> 
+      <label for="name">Naam</label>
+      <input type="text" id="name" name="name">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div>
+      <label for="password">Wachtwoord</label>
+      <input type="password" id="password" name="password">
+    </div>
+  </form>
 </body>
 </html>
 
