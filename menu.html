@@ -17,14 +17,14 @@
                 function(err) { console.error("Error signing in", err); });
       }
       function loadClient() {
-        gapi.client.setApiKey("JOUW_API_SLEUTEL");
+        gapi.client.setApiKey("zGZ1eNvpLwHLpQ9mT9dOPaKHi90v6fx8J2ZsPlv15wM");
         return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest")
             .then(function() { console.log("GAPI client loaded for API"); },
                   function(err) { console.error("Error loading GAPI client for API", err); });
       }
       // Voeg de client-id en client-secret toe aan de onderstaande code
       gapi.load("client:auth2", function() {
-        gapi.auth2.init({client_id: "JOUW_CLIENT_ID"});
+        gapi.auth2.init({client_id: "434251851653-2t5vuufp0tu4iv2omko3d8pt40podqrv.apps.googleusercontent.com"});
       });
     </script>
     <!-- Einde van de toe te voegen code -->
